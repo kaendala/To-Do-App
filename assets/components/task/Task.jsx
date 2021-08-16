@@ -5,6 +5,7 @@ import { changeTask } from "../../redux/actions/task.action";
 import { View, SafeAreaView, Alert } from "react-native";
 import { CheckBox } from "react-native-elements";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 const Task = ({ element, changeTask }) => {
   const [color, setColor] = useState();
@@ -27,6 +28,9 @@ const Task = ({ element, changeTask }) => {
         uncheckedColor={color}
         checkedIcon="check-square"
         uncheckedIcon="square-o"
+        containerStyle={{
+          padding: 0,
+        }}
         onPress={() => {
           changeTask(element.id);
         }}
@@ -45,5 +49,11 @@ const mapDispatchToProps = (dispatch) => {
     changeTask: (data) => dispatch(changeTask(data)),
   };
 };
-
+Task.propTypes = {
+  element: PropTypes.shape({
+    task: PropTypes.shape({
+      title: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+};
 export default connect(mapStateToProps, mapDispatchToProps)(Task);

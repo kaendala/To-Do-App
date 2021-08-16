@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
 
 export const Button = styled.TouchableOpacity`
-  background-color: #51c06e;
+background: ${props => props.disabled ? "#d2d2d2" : "#51c06e"};
   border-radius: 20px;
   position: absolute;
   width: 100%;

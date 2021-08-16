@@ -1,24 +1,29 @@
 const ADD_TASKS = 'ADD NEW TASK [task]';
 const CHANGE_TASK = 'CHANGE STATUS TASK [task]';
+const UPDATE_DATA= 'UPDATE DATA TASK [task]'
 
-let nextTodoId = 0;
-const addNewTask = task => {
+const addNewTask = (task) => {
   return {
     type: ADD_TASKS,
     payload: {
-    id: ++nextTodoId,
-    task
-  }
+      task
+    }
   };
 };
 const changeTask = id => ({
   type: CHANGE_TASK,
   payload: { id }
 });
+const updateTask = tasks => ({
+  type: UPDATE_DATA,
+  payload: { tasks }
+});
 
 export {
   ADD_TASKS,
   CHANGE_TASK,
+  UPDATE_DATA,
   addNewTask,
-  changeTask
+  changeTask,
+  updateTask
 }

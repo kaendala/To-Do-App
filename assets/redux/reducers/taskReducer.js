@@ -1,4 +1,4 @@
-import { ADD_TASKS, CHANGE_TASK } from '../actions/task.action'
+import { ADD_TASKS, CHANGE_TASK, UPDATE_DATA } from '../actions/task.action'
 
 const initialState = {
   tasks: [],
@@ -9,11 +9,12 @@ function taskReducer(state, action) {
   const actState = state ? state : initialState;
   switch (action.type) {
     case ADD_TASKS: {
-
-      const { id, task } = action.payload;
+      const { task } = action.payload;
+      const currentid = actState.tasks.length > 0 ? actState.tasks[0] : 0;
+      const id = currentid + 1;
       return {
         ...actState,
-        tasks: [...actState.tasks, id],
+        tasks: [id,...actState.tasks],
         byIds: {
           ...actState.byIds,
           [id]: {
@@ -24,7 +25,6 @@ function taskReducer(state, action) {
       }
     }
     case CHANGE_TASK:
-      debugger
       const { id } = action.payload;
       return {
         ...actState,
@@ -36,6 +36,10 @@ function taskReducer(state, action) {
             }
           }
         
+      };
+    case UPDATE_DATA:
+      return {
+        ...action.payload.tasks
       };
     default:
       return actState;

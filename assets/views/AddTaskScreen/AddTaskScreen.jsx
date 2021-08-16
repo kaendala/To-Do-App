@@ -4,7 +4,7 @@ import {
   Title,
   Screen,
   Button,
-  Text,
+  ButtonDisable,
   TextButton,
 } from "../../styles/general";
 import { Middle, Start, End, styles } from "./styles";
@@ -12,16 +12,16 @@ import { TouchableWithoutFeedback, View } from "react-native";
 import { addNewTask } from "../../redux/actions/task.action";
 import { connect } from "react-redux";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-import PropTypes from "prop-types";
 import SelectDropdown from "react-native-select-dropdown";
+import Task from "../../components/task/Task";
 
 const AddTaskScreen = ({ navigation, addTask }) => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-  const [type, setType] = useState("");
-  const [title, setTitle] = useState("");
-  const [deadLine, setDeadLine] = useState("");
-  const [startTime, setStartTime] = useState("");
-  const [endTime, setEndTime] = useState("");
+  const [type, setType] = useState();
+  const [title, setTitle] = useState(null);
+  const [deadLine, setDeadLine] = useState();
+  const [startTime, setStartTime] = useState();
+  const [endTime, setEndTime] = useState();
   const [remind, setRemind] = useState();
   const [repeat, setRepeat] = useState();
   const remindOptions = [
@@ -170,21 +170,11 @@ const AddTaskScreen = ({ navigation, addTask }) => {
         rowStyle={styles.SelectDropdown}
         rowTextStyle={styles.SelectDropdownText}
       />
-      <Button onPress={createTask}>
+      <Button onPress={createTask} disabled={!title}>
         <TextButton>Create a task</TextButton>
       </Button>
     </Screen>
   );
-};
-AddTaskScreen.prototype = {
-  task: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    deadline: PropTypes.instanceOf(Date),
-    startTime: PropTypes.instanceOf(Date),
-    endTime: PropTypes.instanceOf(Date),
-    remind: PropTypes.string.isRequired,
-    repeat: PropTypes.string.isRequired,
-  }),
 };
 
 const mapDispatchToProps = (dispatch) => {
