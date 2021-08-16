@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Input, Title, Screen, Button, Text } from "../../styles/general";
+import {
+  Input,
+  Title,
+  Screen,
+  Button,
+  Text,
+  TextButton,
+} from "../../styles/general";
 import { Middle, Start, End, styles } from "./styles";
 import { TouchableWithoutFeedback, View } from "react-native";
 import { addNewTask } from "../../redux/actions/task.action";
@@ -8,7 +15,7 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import PropTypes from "prop-types";
 import SelectDropdown from "react-native-select-dropdown";
 
-const AddTaskScreen = ({ navigation, changeTask }) => {
+const AddTaskScreen = ({ navigation, addTask }) => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [type, setType] = useState("");
   const [title, setTitle] = useState("");
@@ -60,9 +67,8 @@ const AddTaskScreen = ({ navigation, changeTask }) => {
       endTime: endTime,
       remind: remind,
       repeat: repeat,
-      complete: false,
     };
-    changeTask(task);
+    addTask(task);
     navigation.navigate("Home");
   };
 
@@ -165,7 +171,7 @@ const AddTaskScreen = ({ navigation, changeTask }) => {
         rowTextStyle={styles.SelectDropdownText}
       />
       <Button onPress={createTask}>
-        <Text>Create a task</Text>
+        <TextButton>Create a task</TextButton>
       </Button>
     </Screen>
   );
@@ -183,7 +189,7 @@ AddTaskScreen.prototype = {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    changeTask: (data) => dispatch(addNewTask(data)),
+    addTask: (data) => dispatch(addNewTask(data)),
   };
 };
 export default connect(null, mapDispatchToProps)(AddTaskScreen);

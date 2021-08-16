@@ -8,11 +8,15 @@ export const Button = styled.TouchableOpacity`
   bottom: 18px;
   left:9%;
 `;
-export const Text = styled.Text`
+export const TextButton = styled.Text`
   color: #FFFFFF;
   font-weight: 500;
   text-align: center;
   padding: 20px 0
+  font-size: 14px;
+`;
+export const Text= styled.Text`
+  color: #6b6b6b;
   font-size: 14px;
 `;
 
