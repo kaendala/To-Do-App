@@ -6,12 +6,17 @@ export const Middle = styled.View`
   flex-direction: row
 `;
 export const Start = styled.View`
+  position:relative;
   width: 48%;
   margin-right: 2%;
 `;
 export const End = styled.View`
+position:relative;
   width: 48%;
   margin-left: 2%;
+`;
+export const View = styled.View`
+position:relative;
 `;
 export const styles = StyleSheet.create({
   SelectDropdownButton: {
@@ -44,5 +49,21 @@ export const styles = StyleSheet.create({
     fontSize: 14,
     color: "#6b6b6b",
     textAlign: "left"
-  }
+  },
+  Icon: {
+    color: "#d2d2d2"
+  },
+  containerIcon:{
+    position: "absolute",
+    right: 12,
+    top: "45%",
+  },
+  arrowContainerIcon:{
+    width: 15,
+    position: "absolute",
+    right: 12,
+    top: "45%",
+    alignItems: "flex-end",
+    transform: [{ rotate:"-90deg"}]
+  },
 })

@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Button, Screen } from "../../styles/general";
 import { TaskComponent, Text } from "./style";
 import { changeTask } from "../../redux/actions/task.action";
-import { View, SafeAreaView, Alert } from "react-native";
 import { CheckBox } from "react-native-elements";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";

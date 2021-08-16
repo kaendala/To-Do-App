@@ -59,7 +59,7 @@ const Home = ({ taskReducer, navigation, updateTask }) => {
           <Task key={index} element={element}></Task>
         ))
       ) : (
-        <Text>you have no tasks completed</Text>
+        <Text>no completed tasks</Text>
       )}
       {!completed && <Title>you have no tasks completed</Title>}
       <Title second>Pending Tasks</Title>
@@ -68,7 +68,7 @@ const Home = ({ taskReducer, navigation, updateTask }) => {
           <Task key={index} element={element}></Task>
         ))
       ) : (
-        <Text>you have no pendings tasks</Text>
+        <Text>no pendings tasks</Text>
       )}
       <Button
         onPress={() => {

@@ -1,4 +1,4 @@
-import { createStore, combineReducers, compose } from 'redux';
+import { combineReducers, compose, createStore } from 'redux';
 import taskReducer from '../redux/reducers/taskReducer';
 
 const rootReducer = combineReducers({ taskReducer });

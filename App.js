@@ -14,8 +14,13 @@ export default function App() {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="Home" component={Home} options={{title: "TO-DO App"}} />
-          <Stack.Screen name="AddTask" component={AddTaskScreen} options={{title: "Add task"}}/>
+          <Stack.Screen name="Home" component={Home} options={{
+            title: "TO-DO App",
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          }
+          }} />
+          <Stack.Screen name="AddTask" component={AddTaskScreen} options={{title: "Add task", headerBackTitle: ""}}/>
         </Stack.Navigator>
         </NavigationContainer>
     </Provider>

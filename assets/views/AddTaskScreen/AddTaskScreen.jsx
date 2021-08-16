@@ -1,19 +1,12 @@
 import React, { useState } from "react";
-import {
-  Input,
-  Title,
-  Screen,
-  Button,
-  ButtonDisable,
-  TextButton,
-} from "../../styles/general";
-import { Middle, Start, End, styles } from "./styles";
-import { TouchableWithoutFeedback, View } from "react-native";
+import { Button, Input, Screen, TextButton, Title } from "../../styles/general";
+import { End, Middle, Start, styles, View } from "./styles";
 import { addNewTask } from "../../redux/actions/task.action";
 import { connect } from "react-redux";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+import { Icon } from "react-native-elements";
 import SelectDropdown from "react-native-select-dropdown";
-import Task from "../../components/task/Task";
+import { TouchableWithoutFeedback } from "react-native";
 
 const AddTaskScreen = ({ navigation, addTask }) => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
@@ -79,29 +72,37 @@ const AddTaskScreen = ({ navigation, addTask }) => {
         onChangeText={(e) => setTitle(e)}
         placeholder="Design team meeting"
       ></Input>
-      <Title>DeadLine</Title>
-      <TouchableWithoutFeedback
-        onPress={() => {
-          setType("deadLine");
-          setDatePickerVisibility(true);
-        }}
-      >
-        <View>
-          <Input
-            pointerEvents="none"
-            selectTextOnFocus={false}
-            editable={false}
-            placeholder={new Date().toISOString().slice(0, 10)}
-            value={deadLine}
-          ></Input>
-        </View>
-      </TouchableWithoutFeedback>
-      <DateTimePickerModal
-        isVisible={isDatePickerVisible}
-        mode={type === "deadLine" ? "date" : "time"}
-        onConfirm={handleConfirm}
-        onCancel={hideDatePicker}
-      />
+      <View>
+        <Title>DeadLine</Title>
+        <TouchableWithoutFeedback
+          onPress={() => {
+            setType("deadLine");
+            setDatePickerVisibility(true);
+          }}
+        >
+          <View>
+            <Input
+              pointerEvents="none"
+              selectTextOnFocus={false}
+              editable={false}
+              placeholder={new Date().toISOString().slice(0, 10)}
+              value={deadLine}
+            ></Input>
+          </View>
+        </TouchableWithoutFeedback>
+        <DateTimePickerModal
+          isVisible={isDatePickerVisible}
+          mode={type === "deadLine" ? "date" : "time"}
+          onConfirm={handleConfirm}
+          onCancel={hideDatePicker}
+        />
+        <Icon
+          name="code"
+          containerStyle={styles.arrowContainerIcon}
+          iconStyle={styles.Icon}
+          size={30}
+        />
+      </View>
       <Middle>
         <Start>
           <Title>Start time</Title>
@@ -121,6 +122,12 @@ const AddTaskScreen = ({ navigation, addTask }) => {
               ></Input>
             </View>
           </TouchableWithoutFeedback>
+          <Icon
+            name="schedule"
+            containerStyle={styles.containerIcon}
+            iconStyle={styles.Icon}
+            size={20}
+          />
         </Start>
         <End>
           <Title>End time</Title>
@@ -140,36 +147,58 @@ const AddTaskScreen = ({ navigation, addTask }) => {
               ></Input>
             </View>
           </TouchableWithoutFeedback>
+          <Icon
+            name="schedule"
+            containerStyle={styles.containerIcon}
+            iconStyle={styles.Icon}
+            size={20}
+          />
         </End>
       </Middle>
-      <Title>Remind</Title>
-      <SelectDropdown
-        data={remindOptions}
-        defaultButtonText="10 minutes early"
-        onSelect={(selectedItem, index) => {
-          setRemind(selectedItem);
-        }}
-        buttonStyle={styles.SelectDropdownButton}
-        buttonTextStyle={
-          remind ? styles.SelectButtonTextSelected : styles.SelectButtonText
-        }
-        rowStyle={styles.SelectDropdown}
-        rowTextStyle={styles.SelectDropdownText}
-      />
-      <Title>Repeat</Title>
-      <SelectDropdown
-        data={repeatOptions}
-        defaultButtonText="weekly"
-        onSelect={(selectedItem, index) => {
-          setRepeat(selectedItem);
-        }}
-        buttonStyle={styles.SelectDropdownButton}
-        buttonTextStyle={
-          repeat ? styles.SelectButtonTextSelected : styles.SelectButtonText
-        }
-        rowStyle={styles.SelectDropdown}
-        rowTextStyle={styles.SelectDropdownText}
-      />
+      <View>
+        <Title>Remind</Title>
+        <SelectDropdown
+          data={remindOptions}
+          defaultButtonText="10 minutes early"
+          onSelect={(selectedItem, index) => {
+            setRemind(selectedItem);
+          }}
+          buttonStyle={styles.SelectDropdownButton}
+          buttonTextStyle={
+            remind ? styles.SelectButtonTextSelected : styles.SelectButtonText
+          }
+          rowStyle={styles.SelectDropdown}
+          rowTextStyle={styles.SelectDropdownText}
+        />
+        <Icon
+          name="code"
+          containerStyle={styles.arrowContainerIcon}
+          iconStyle={styles.Icon}
+          size={30}
+        />
+      </View>
+      <View>
+        <Title>Repeat</Title>
+        <SelectDropdown
+          data={repeatOptions}
+          defaultButtonText="weekly"
+          onSelect={(selectedItem, index) => {
+            setRepeat(selectedItem);
+          }}
+          buttonStyle={styles.SelectDropdownButton}
+          buttonTextStyle={
+            repeat ? styles.SelectButtonTextSelected : styles.SelectButtonText
+          }
+          rowStyle={styles.SelectDropdown}
+          rowTextStyle={styles.SelectDropdownText}
+        />
+        <Icon
+          name="code"
+          containerStyle={styles.arrowContainerIcon}
+          iconStyle={styles.Icon}
+          size={30}
+        />
+      </View>
       <Button onPress={createTask} disabled={!title}>
         <TextButton>Create a task</TextButton>
       </Button>
