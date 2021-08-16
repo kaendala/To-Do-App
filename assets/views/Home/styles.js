@@ -8,7 +8,7 @@ margin-top: ${props => props.second ? "30px" : "0px"};
   margin-bottom: 30px
 `;
 export const Text = styled.Text`
-  font-size: 24px;
+  font-size: 18px;
   color: #1f2b36;
   font-weight: 100;
   text-align: center
